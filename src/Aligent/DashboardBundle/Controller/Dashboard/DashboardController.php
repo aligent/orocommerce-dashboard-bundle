@@ -15,7 +15,6 @@ use Oro\Bundle\DashboardBundle\Exception\InvalidConfigurationException;
 use Oro\Bundle\DashboardBundle\Helper\DateHelper;
 use Oro\Bundle\DashboardBundle\Model\WidgetConfigs;
 use Oro\Bundle\SecurityBundle\ORM\Walker\AclHelper;
-use Oro\Bundle\WorkflowBundle\Model\WorkflowAwareManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +33,6 @@ class DashboardController extends AbstractController
     {
         return array_merge(parent::getSubscribedServices(), [
             WidgetConfigs::class,
-//            WorkflowAwareManager::class,
             TranslatorInterface::class,
             AclHelper::class,
             ChartViewBuilder::class,
