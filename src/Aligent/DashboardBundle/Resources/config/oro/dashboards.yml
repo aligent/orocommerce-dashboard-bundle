@@ -95,8 +95,3 @@ dashboards:
             item_label: oro.dashboard.widget.big_number.metricName
             required: false
             widget_name: orders_big_numbers_widget
-
-  # Configuration of dashboards
-  dashboards: # dashboard configuration section
-    sample_dashboard: # dashboard name
-      twig: OroDashboardBundle:Index:default.html.twig # dashboard template (used by default)

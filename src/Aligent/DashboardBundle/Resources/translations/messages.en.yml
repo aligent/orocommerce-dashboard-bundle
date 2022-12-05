@@ -1,8 +1,5 @@
 aligent:
   dashboard:
-    title:
-      sample_dashboard: 'Sample dashboard'
-
     popular_products_grid:
       title: Popular products
       description: This widget gives you a quick overview of organisation popular products
