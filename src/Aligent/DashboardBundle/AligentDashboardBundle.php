@@ -1,10 +1,10 @@
 <?php
 /**
  * @category  Aligent
- * @package   AligentDashboardBundle
- * @author    Adam Hall <adam.hall@aligent.com.au>
- * @copyright 2022 Aligent Consulting.
- * @license   GNU GENERAL PUBLIC LICENSE
+ * @package
+ * @author    Greg Ziborov <greg.ziborov@aligent.com.au>
+ * @copyright 2021 Aligent Consulting.
+ * @license
  * @link      http://www.aligent.com.au/
  */
 
@@ -15,5 +15,5 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class AligentDashboardBundle extends Bundle
 {
-    const ALIAS = 'aligent_dashboard';
+
 }
