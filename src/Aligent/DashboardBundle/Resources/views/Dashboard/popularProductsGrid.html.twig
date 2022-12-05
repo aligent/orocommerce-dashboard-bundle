@@ -1,0 +1,9 @@
+{% extends '@OroDashboard/Dashboard/widget.html.twig' %}
+{% import '@OroDataGrid/macros.html.twig' as dataGrid %}
+
+{% block content %}
+    {{ dataGrid.renderGrid('popular-products-grid') }}
+    <script type="text/javascript">
+        require(['orocrm/call/info-opener']);
+    </script>
+{% endblock %}

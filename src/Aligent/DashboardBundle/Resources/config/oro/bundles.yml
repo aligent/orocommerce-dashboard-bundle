@@ -1,0 +1,2 @@
+bundles:
+  - { name: Aligent\DashboardBundle\AligentDashboardBundle, priority: 100 }

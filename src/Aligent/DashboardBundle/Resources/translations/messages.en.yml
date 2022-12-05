@@ -1,0 +1,29 @@
+aligent:
+  dashboard:
+    popular_products_grid:
+      title: Popular products
+      description: This widget gives you a quick overview of organisation popular products
+
+    revenue_over_time_chart:
+      title: Revenue over time
+      description: This widget gives you a quick overview of organisation revenues
+      revenue: Revenue
+      date: Date
+      current_period: Current period
+      previous_period: Previous period
+
+    orders_over_time_chart:
+      title: Order count over time
+      description: This widget gives you a quick overview of organisation order numbers
+      count: Count
+      date: Date
+      current_period: Current period
+      previous_period: Previous period
+
+    order_stats:
+      title:        Orders statistics
+      description:  This widget gives you a quick overview of organisation order statistics numbers
+      revenue.label: Revenue
+      orders_number.label: Orders placed
+      discounted_orders_percent.label: Discounted orders
+      average_order_value.label: Average order amount

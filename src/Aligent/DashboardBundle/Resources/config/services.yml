@@ -1,0 +1,25 @@
+services:
+  # Data provider
+  Aligent\DashboardBundle\Dashboard\Provider\BigNumberProvider:
+    arguments:
+      - "@doctrine"
+      - "@oro_security.acl_helper"
+      - "@oro_dashboard.provider.big_number.date_helper"
+    tags:
+      - { name: oro_dashboard.big_number.provider, alias: order_stats }
+
+  Aligent\DashboardBundle\Dashboard\Provider\OrderDataProvider:
+    arguments:
+      - "@doctrine"
+      - "@oro_security.acl_helper"
+      - "@oro_chart.config_provider"
+      - "@oro_locale.formatter.date_time"
+      - "@oro_dashboard.datetime.helper"
+
+  #oro_dashboard.widget_config_value.date_range.converter.decorator:
+  Aligent\DashboardBundle\Dashboard\Converter\FilterDateRangeConverterDecorator:
+    decorates: oro_dashboard.widget_config_value.date_range.converter
+    arguments:
+      - '@oro_locale.formatter.date_time'
+      - '@oro_filter.expression.date.compiler'
+      - '@translator'

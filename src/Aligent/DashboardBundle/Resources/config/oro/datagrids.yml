@@ -1,0 +1,102 @@
+datagrids:
+  popular-products-grid:
+    entity_name: 'Oro\Bundle\ReportBundle\Entity\CalendarDate'
+    options:
+      entityHint: oro.calendardate.entity_plural_label
+      export: true
+    source:
+      type: orm
+      query:
+        select:
+          - product.id AS productId
+          - product.sku AS productSku
+          - product.denormalizedDefaultName AS productName
+          - SUM (lineitem.quantity) as qtySold
+          - lineitem.productUnitCode as unitCode
+        from:
+          - { table: 'Oro\Bundle\ReportBundle\Entity\CalendarDate', alias: calendarDate }
+        join:
+          left:
+            -
+              join: 'Oro\Bundle\OrderBundle\Entity\Order'
+              alias: orderAlias
+              conditionType: WITH
+              condition: CAST(calendarDate.date as DATE) = CAST(orderAlias.createdAt as DATE)
+            -
+              join: orderAlias.lineItems
+              alias: lineitem
+            -
+              join: lineitem.product
+              alias: product
+        groupBy: productId, unitCode
+    columns:
+      timePeriod:
+        label:         oro.report.datagrid.column.time_period.label
+      productSku:
+        label:         oro.product.sku.label
+      productName:
+        label:         oro.product.names.label
+      qtySold:
+        label:         oro.product.qty_sold.label
+        type:          twig
+        template:      '@OroOrder/Order/Datagrid/productQtySold.html.twig'
+        frontend_type: html
+    sorters:
+      columns:
+        timePeriod:
+          data_name: timePeriod
+          apply_callback: ['@oro_filter.date_grouping_filter', 'applyOrderBy']
+        productSku:
+          data_name: productSku
+        productName:
+          data_name: productName
+        qtySold:
+          data_name: qtySold
+      default:
+        timePeriod: DESC
+        productSku: DESC
+    filters:
+      columns:
+        timePeriod:
+          label:              oro.report.datagrid.column.time_period.label
+          type:               datetime
+          data_name:          orderAlias.createdAt
+        productSku:
+          type:               string
+          data_name:          productSku
+        productName:
+          type:               string
+          data_name:          productName
+        skip_empty_periods:
+          label:              oro.report.filter.skip_empty_periods.label
+          type:               skip_empty_periods
+          data_name:          productId
+          options:
+            field_options:
+              choices:
+                No: 0
+                Yes: 1
+            default_value: Yes
+        grouping:
+          label:              oro.report.filter.grouping.label
+          type:               date_grouping
+          data_name:          calendarDate.date
+          column_name:        timePeriod
+          calendar_entity:    'Oro\Bundle\ReportBundle\Entity\CalendarDate'
+          target_entity:      'Oro\Bundle\OrderBundle\Entity\Order'
+          not_nullable_field: product.id
+          joined_column:      createdAt
+          joined_table:       joinedTableAlias
+          options:
+            field_options:
+              choices:
+                Day:     day
+                Month:   month
+                Quarter: quarter
+                Year:    year
+            default_value: Day
+      default:
+        grouping:
+          value: day
+        skip_empty_periods:
+          value: 1

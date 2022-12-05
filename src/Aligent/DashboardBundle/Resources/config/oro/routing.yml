@@ -1,0 +1,4 @@
+aligent_dashboard:
+  resource:     "@AligentDashboardBundle/Controller/Dashboard/DashboardController.php"
+  type:         annotation
+  prefix:       /aligent-dashboard
