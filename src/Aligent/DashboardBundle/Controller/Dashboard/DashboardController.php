@@ -28,6 +28,7 @@ class DashboardController extends AbstractController
 {
     /**
      * {@inheritdoc}
+     * @return string[]
      */
     public static function getSubscribedServices(): array
     {
