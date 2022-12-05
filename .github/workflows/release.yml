@@ -1,0 +1,20 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Push Release
+
+jobs:
+  build:
+    name: Push Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update Packagist
+        env:
+          API_TOKEN: ${{ secrets.PackagistApiToken }}
+        run: curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=aligent&apiToken='$API_TOKEN -d'{"repository":{"url":"https://packagist.org/packages/aligent/orocommerce-dashboard-bundle"}}'
