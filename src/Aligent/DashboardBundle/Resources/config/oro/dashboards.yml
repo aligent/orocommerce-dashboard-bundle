@@ -4,13 +4,13 @@ dashboards:
     popular_products_datagrid_widget:                               # register a widget
       label:      aligent.dashboard.popular_products_grid.title
       route:      oro_dashboard_widget        # you can use existing controller to render your TWIG template
-      route_parameters: { bundle: AligentDashboardBundle, name: popularProductsGrid }   # just specify a bundle and a TWIG template name
+      route_parameters: { bundle: AligentDashboard, name: popularProductsGrid }   # just specify a bundle and a TWIG template name
       acl:         oro_channel_view
       description: aligent.dashboard.popular_products_grid.description
       icon: bundles/orochannel/img/average_lifetime_sales_chart.png
       icon_class: fa-suitcase
 
-    revenue_over_time_chart_widget:
+    revenue_over_time_chart:
       label:       aligent.dashboard.revenue_over_time_chart.title
       route:       aligent_dashboard_revenue_over_time_chart
       acl:         oro_channel_view
@@ -26,7 +26,7 @@ dashboards:
             all_time_value: false
           show_on_widget: true
 
-    orders_over_time_chart_widget:
+    orders_over_time_chart:
       label:       aligent.dashboard.orders_over_time_chart.title
       route:       aligent_dashboard_orders_over_time_chart
       acl:         oro_channel_view
@@ -45,7 +45,7 @@ dashboards:
     orders_big_numbers_widget:
       label:       aligent.dashboard.order_stats.title
       route:       oro_dashboard_itemized_data_widget
-      route_parameters: { bundle: AligentDashboardBundle, name: bigNumber }
+      route_parameters: { bundle: AligentDashboard, name: bigNumber }
       acl:         oro_channel_view
       description: aligent.dashboard.order_stats.description
       icon:        bundles/orosales/img/opportunity_by_status.png
@@ -55,22 +55,22 @@ dashboards:
           data_provider: "@oro_dashboard.provider.big_number.processor->getBigNumberValues($widgetOptions$, order_stats, getRevenueValues, currency)"
           label:         aligent.dashboard.order_stats.revenue.label
           acl:           oro_channel_view
-          template:      AligentDashboardBundle:Dashboard:bigNumberSubwidget.html.twig
+          template:      '@AligentDashboard/Dashboard/bigNumberSubwidget.html.twig'
         orders_number:
           data_provider: "@oro_dashboard.provider.big_number.processor->getBigNumberValues($widgetOptions$, order_stats, getOrdersNumberValues, integer)"
           label:         aligent.dashboard.order_stats.orders_number.label
           acl:           oro_channel_view
-          template:      AligentDashboardBundle:Dashboard:bigNumberSubwidget.html.twig
+          template:      '@AligentDashboard/Dashboard/bigNumberSubwidget.html.twig'
         discounted_orders_percent:
           data_provider: "@oro_dashboard.provider.big_number.processor->getBigNumberValues($widgetOptions$, order_stats, getDiscountedOrdersPercentValues, percent)"
           label:         aligent.dashboard.order_stats.discounted_orders_percent.label
           acl:           oro_channel_view
-          template:      AligentDashboardBundle:Dashboard:bigNumberSubwidget.html.twig
+          template:      '@AligentDashboard/Dashboard/bigNumberSubwidget.html.twig'
         average_order_value:
           data_provider: "@oro_dashboard.provider.big_number.processor->getBigNumberValues($widgetOptions$, order_stats, getAverageOrdersValues, currency)"
           label:         aligent.dashboard.order_stats.average_order_value.label
           acl:           oro_channel_view
-          template:      AligentDashboardBundle:Dashboard:bigNumberSubwidget.html.twig
+          template:      '@AligentDashboard/Dashboard/bigNumberSubwidget.html.twig'
       configuration:
         dateRange:
           type: Oro\Bundle\DashboardBundle\Form\Type\WidgetDateRangeType

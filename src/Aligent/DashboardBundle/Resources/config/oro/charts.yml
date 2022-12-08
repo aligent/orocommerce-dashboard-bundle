@@ -1,0 +1,44 @@
+charts:
+    revenue_over_time_chart:
+        label: oro.chart.multiline_chart.label
+        data_schema:
+            label:
+                name: label
+                label: Date
+                required: true
+                default_type: date
+                type: date
+                field_name: date
+            value:
+                name: value
+                label: Revenue
+                required: true
+                default_type: decimal
+                field_name: amount
+                type: currency
+        xaxis:
+            mode: time
+            noTicks: 12
+        template: OroChartsBundle:Chart:multiline.html.twig
+        
+    orders_over_time_chart:
+        label: oro.chart.line_chart.label
+        data_schema:
+            label:
+                name: label
+                label: Date
+                required: true
+                default_type: date
+                type: date
+                field_name: date
+            value:
+                name: value
+                #label: oro.magento.dashboard.orders_over_time_chart.order_count
+                label: Order Count
+                required: true
+                default_type: integer
+                field_name: count
+        xaxis:
+            mode: time
+            noTicks: 12
+        template: OroChartsBundle:Chart:multiline.html.twig

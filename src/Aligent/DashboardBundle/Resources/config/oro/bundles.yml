@@ -1,2 +1,2 @@
 bundles:
-  - { name: Aligent\DashboardBundle\AligentDashboardBundle, priority: 100 }
+  - { name: Aligent\DashboardBundle\AligentDashboardBundle, priority: 210 }
