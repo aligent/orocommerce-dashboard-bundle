@@ -47,7 +47,7 @@ class DashboardController extends AbstractController
      *      name="aligent_dashboard_revenue_over_time_chart",
      *      requirements={"widget"="[\w_-]+"}
      * )
-     * @Template("AligentDashboardBundle:Dashboard:revenueOverTimeChart.html.twig")
+     * @Template("@AligentDashboard/Dashboard/revenueOverTimeChart.html.twig")
      *
      * @return array<string, mixed>
      * @throws InvalidConfigurationException
@@ -75,7 +75,7 @@ class DashboardController extends AbstractController
      *      name="aligent_dashboard_orders_over_time_chart",
      *      requirements={"widget"="[\w_-]+"}
      * )
-     * @Template("AligentDashboardBundle:Dashboard:ordersOverTimeChart.html.twig")
+     * @Template("@AligentDashboard/Dashboard/ordersOverTimeChart.html.twig")
      *
      * @return array<string, mixed>
      * @throws InvalidConfigurationException
