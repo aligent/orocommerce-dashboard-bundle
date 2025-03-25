@@ -36,10 +36,7 @@ class AligentDashboardExtension extends Extension
         $loader->load('controller.yml');
     }
 
-    /**
-     * @return string
-     */
-    public function getAlias()
+    public function getAlias(): string
     {
         return self::ALIAS;
     }
