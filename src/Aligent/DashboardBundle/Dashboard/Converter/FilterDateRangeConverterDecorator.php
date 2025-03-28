@@ -18,9 +18,14 @@ class FilterDateRangeConverterDecorator extends FilterDateRangeConverter
      * Borrowed from Oro Core with couple of changes mentioned in the comments
      * @param array<string, mixed> $value
      * @param boolean $cretePreviousPeriod
+     * @param string[] $todayAsEndDateTypes
      * @return array<string, mixed>
      */
-    protected function processValueTypes(array $value, $cretePreviousPeriod): array
+    protected function processValueTypes(
+        array $value,
+        bool $createPreviousPeriod,
+        array $todayAsEndDateTypes = []
+    ): array
     {
         $start = $end = $part = $prevStart = $prevEnd = null;
         $type = $value['type'] ?? AbstractDateFilterType::TYPE_BETWEEN;
