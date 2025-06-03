@@ -42,7 +42,7 @@ class FilterDateRangeConverterDecorator extends FilterDateRangeConverter
             $start->setTime(0, 0, 0);
             /** $end of period calculation changed from the first day of next month to the last day of current month */
             $end->setTime(23, 59, 59);
-            if ($cretePreviousPeriod) {
+            if ($createPreviousPeriod) {
                 $prevStart = clone $start;
                 $prevModify = static::$valueTypesStartVarsMap[$value['type']]['modify_previous_start'];
                 if ($prevModify) {
