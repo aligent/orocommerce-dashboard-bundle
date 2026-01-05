@@ -17,11 +17,11 @@ use Oro\Bundle\DashboardBundle\Model\WidgetConfigs;
 use Oro\Bundle\SecurityBundle\ORM\Walker\AclHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Adds action which are responsible for rendering Aligent dashboard chart widgets
+ * Adds actions which are responsible for rendering Aligent dashboard chart widgets
  */
 class DashboardController extends AbstractController
 {
@@ -42,21 +42,16 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route(
-     *      "/aligent_dashboard_revenue_over_time_chart",
-     *      name="aligent_dashboard_revenue_over_time_chart",
-     *      requirements={"widget"="[\w_-]+"}
-     * )
-     * @Template("@AligentDashboard/Dashboard/revenueOverTimeChart.html.twig")
-     *
      * @return array<string, mixed>
      * @throws InvalidConfigurationException
      */
+    #[Route(path: '/aligent_dashboard_revenue_over_time_chart', name: 'aligent_dashboard_revenue_over_time_chart', requirements: ['widget' => '[\w_-]+'])]
+    #[Template('@AligentDashboard/Dashboard/revenueOverTimeChart.html.twig')]
     public function revenueOverTimeAction(): array
     {
-        $widgetAttributes  = $this->get(WidgetConfigs::class);
-        $orderDataProvider = $this->get(OrderDataProvider::class);
-        $chartViewBuilder  = $this->get(ChartViewBuilder::class);
+        $widgetAttributes  = $this->container->get(WidgetConfigs::class);
+        $orderDataProvider = $this->container->get(OrderDataProvider::class);
+        $chartViewBuilder  = $this->container->get(ChartViewBuilder::class);
 
         $data              = $widgetAttributes->getWidgetAttributesForTwig('revenue_over_time_chart');
         $data['chartView'] = $orderDataProvider->getRevenueOverTimeChartView(
@@ -80,11 +75,13 @@ class DashboardController extends AbstractController
      * @return array<string, mixed>
      * @throws InvalidConfigurationException
      */
+    #[Route(path: '/aligent_dashboard_orders_over_time_chart', name: 'aligent_dashboard_orders_over_time_chart', requirements: ['widget' => '[\w_-]+'])]
+    #[Template('@AligentDashboard/Dashboard/ordersOverTimeChart.html.twig')]
     public function ordersOverTimeAction(): array
     {
-        $widgetAttributes  = $this->get(WidgetConfigs::class);
-        $orderDataProvider = $this->get(OrderDataProvider::class);
-        $chartViewBuilder  = $this->get(ChartViewBuilder::class);
+        $widgetAttributes  = $this->container->get(WidgetConfigs::class);
+        $orderDataProvider = $this->container->get(OrderDataProvider::class);
+        $chartViewBuilder  = $this->container->get(ChartViewBuilder::class);
 
         $data              = $widgetAttributes->getWidgetAttributesForTwig('orders_over_time_chart');
         $data['chartView'] = $orderDataProvider->getOrdersOverTimeChartView(
